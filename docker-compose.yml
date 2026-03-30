@@ -1,0 +1,16 @@
+services:
+  homepage:
+    image: gethomepage/homepage:latest
+    container_name: homepage
+    environment: 
+      HOMEPAGE_ALLOWED_HOSTS: gethomepage.dev,${HOMEPAGE_VAR_MY_SERVER_IP}:3000 
+    env_file:
+      - .env
+    ports:
+      - 3000:3000
+    volumes:
+      - ./config:/app/config # Tus archivos de configuración
+      - /var/run/docker.sock:/var/run/docker.sock # Para monitoreo de Docker
+      - /mnt/storage:/mnt/storage
+      - ./icons:/app/public/icons
+    restart: unless-stopped

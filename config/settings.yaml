@@ -1,0 +1,21 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/configs/settings/
+
+#providers:
+#  openweathermap: openweathermapapikey
+#  weatherapi: weatherapiapikey
+
+headerStyle: boxed
+
+disableCollapse: true
+
+useEqualHeights: true
+
+#showStats: true
+statusStyle: "dot"
+
+layout:
+  "Media Server":
+    style: row
+    columns: 3

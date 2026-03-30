@@ -1,0 +1,105 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/configs/services/
+
+- Mi Infraestructura:
+    - Docker:
+        icon: docker.png
+        href: "http://{{HOMEPAGE_VAR_MY_SERVER_IP}}:3000" # Homepage se ve a sí mismo
+        description: "Gestión de Contenedores"
+        server: my-docker # Referencia al archivo docker.yaml que haremos luego
+        container: homepage
+
+
+- Almacenamiento y Red:
+    - Samba:
+        icon: /icons/samba.png
+        href: "smb://{{HOMEPAGE_VAR_MY_SERVER_IP}}"
+        description: "Servidor de archivos en red"
+        server: my-docker
+        container: samba
+
+- Media Server:
+    - Plex:
+        icon: plex.png
+        href: "http://{{HOMEPAGE_VAR_MY_SERVER_IP}}:32400/web"
+        description: "Centro multimedia"
+        server: my-docker
+        container: plex
+        widget:
+          type: plex
+          url: "http://{{HOMEPAGE_VAR_MY_SERVER_IP}}:32400"
+          key: "{{HOMEPAGE_VAR_PLEX_KEY}}" # Opcional: para ver sesiones activas
+          fields: ["streams", "movies", "tv"]
+    - Prowlarr:
+        icon: prowlarr.png
+        href: "http://{{HOMEPAGE_VAR_MY_SERVER_IP}}:9696"
+        description: "Indexer"
+        server: my-docker
+        container: prowlarr
+        widget:
+          type: prowlarr
+          url: "http://{{HOMEPAGE_VAR_MY_SERVER_IP}}:9696"
+          key: "{{HOMEPAGE_VAR_PROWLARR_KEY}}" # Opcional: para ver sesiones activas
+    - Sonarr:
+        icon: sonarr.png
+        href: "http://{{HOMEPAGE_VAR_MY_SERVER_IP}}:8989"
+        description: "Series management"
+        server: my-docker
+        container: sonarr
+        widget:
+          type: sonarr
+          url: "http://{{HOMEPAGE_VAR_MY_SERVER_IP}}:8989"
+          key: "{{HOMEPAGE_VAR_SONARR_KEY}}"
+          enableQueue: true # optional, defaults to false
+    - Radarr:
+        icon: radarr.png
+        href: "http://{{HOMEPAGE_VAR_MY_SERVER_IP}}:7878"
+        description: "Movies management"
+        server: my-docker
+        container: radarr
+        widget:
+          type: radarr
+          url: "http://{{HOMEPAGE_VAR_MY_SERVER_IP}}:7878"
+          key: "{{HOMEPAGE_VAR_RADARR_KEY}}"
+          enableQueue: true # optional, defaults to false
+    - Seerr:
+        icon: overseerr.png
+        href: "http://{{HOMEPAGE_VAR_MY_SERVER_IP}}:5055"
+        description: "Media Discovery"
+        server: my-docker
+        container: seerr
+        widget:
+          type: seerr
+          url: "http://{{HOMEPAGE_VAR_MY_SERVER_IP}}:5055"
+          key: "{{HOMEPAGE_VAR_SEERR_KEY}}"
+    - Bazarr:
+        icon: bazarr.png
+        href: "http://{{HOMEPAGE_VAR_MY_SERVER_IP}}:6767"
+        description: "Subtitles management"
+        server: my-docker
+        container: bazarr
+        widget:
+          type: bazarr
+          url: "http://{{HOMEPAGE_VAR_MY_SERVER_IP}}:6767"
+          key: "{{HOMEPAGE_VAR_BAZARR_KEY}}"
+
+- Descargas:
+    - Transmission:
+        icon: transmission.png
+        href: "http://{{HOMEPAGE_VAR_MY_SERVER_IP}}:9091"
+        description: "Cliente BitTorrent"
+        server: my-docker
+        container: transmission
+        widget:
+          type: transmission
+          url: "http://{{HOMEPAGE_VAR_MY_SERVER_IP}}:9091"
+          username: admin # Ajusta si tienes usuario/pass
+          password: "{{HOMEPAGE_VAR_TRANSMISSION_PASS}}"
+
+    - Flexget:
+        icon: flexget.png
+        href: "http://{{HOMEPAGE_VAR_MY_SERVER_IP}}:5050"
+        description: "Automatización de torrents"
+        server: my-docker
+        container: flexget
