@@ -18,9 +18,10 @@
 
 - datetime:
     text_size: xl
+    locale: mx
     format:
       timeStyle: short
-      dateStyle: short
+      dateStyle: long
 
 - openmeteo:
     label: "{{HOMEPAGE_VAR_CITY}}"
