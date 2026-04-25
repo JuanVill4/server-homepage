@@ -1,35 +1,17 @@
 ---
 # For configuration options and examples, please see:
 # https://gethomepage.dev/configs/services/
-
-- Mi Infraestructura:
-    - Docker:
-        icon: docker.png
-        href: "http://{{HOMEPAGE_VAR_MY_SERVER_IP}}:3000" # Homepage se ve a sí mismo
-        description: "Gestión de Contenedores"
-        server: my-docker # Referencia al archivo docker.yaml que haremos luego
-        container: homepage
-
-
-- Almacenamiento y Red:
-    - Samba:
-        icon: /icons/samba.png
-        href: "smb://{{HOMEPAGE_VAR_MY_SERVER_IP}}"
-        description: "Servidor de archivos en red"
-        server: my-docker
-        container: samba
-
 - Media Server:
     - Plex:
         icon: plex.png
         href: "http://{{HOMEPAGE_VAR_MY_SERVER_IP}}:32400/web"
-        description: "Centro multimedia"
+        description: "Media Center"
         server: my-docker
         container: plex
         widget:
           type: plex
           url: "http://{{HOMEPAGE_VAR_MY_SERVER_IP}}:32400"
-          key: "{{HOMEPAGE_VAR_PLEX_KEY}}" # Opcional: para ver sesiones activas
+          key: "{{HOMEPAGE_VAR_PLEX_KEY}}" 
           fields: ["streams", "movies", "tv"]
     - Prowlarr:
         icon: prowlarr.png
@@ -84,6 +66,53 @@
           url: "http://{{HOMEPAGE_VAR_MY_SERVER_IP}}:6767"
           key: "{{HOMEPAGE_VAR_BAZARR_KEY}}"
 
+- Mi Infraestructura:
+#    - Docker:
+#        icon: docker.png
+#        href: "http://{{HOMEPAGE_VAR_MY_SERVER_IP}}:3000" # Homepage se ve a sí mismo
+#        description: "Gestión de Contenedores"
+#        server: my-docker # Referencia al archivo docker.yaml que haremos luego
+#        container: homepage
+    - Portainer:
+        icon: portainer.png
+        href: "https://{{HOMEPAGE_VAR_MY_SERVER_IP}}:9443" # Homepage se ve a sí mismo
+        description: "Gestión de Contenedores"
+        server: my-docker # Referencia al archivo docker.yaml que haremos luego
+        container: portainer
+        widget:
+          type: portainer
+          url: "https://{{HOMEPAGE_VAR_MY_SERVER_IP}}:9443"
+          env: 4
+          key: "{{HOMEPAGE_VAR_PORTAINER_KEY}}"
+
+- Almacenamiento y Red:
+    - Samba:
+        icon: /icons/samba.png
+        href: "smb://{{HOMEPAGE_VAR_MY_SERVER_IP}}"
+        description: "Servidor de archivos en red"
+        server: my-docker
+        container: samba
+
+    - Gluetun:
+        icon: gluetun.png
+        href: "http://{{HOMEPAGE_VAR_MY_SERVER_IP}}:8100/v1/publicip/ip"
+        description: "Cliente VPN"
+        server: my-docker
+        container: vpn
+        widget:
+          type: gluetun
+          url: "http://{{HOMEPAGE_VAR_MY_SERVER_IP}}:8100"
+          version: 2
+          fields: ["public_ip", "region", "country", "port_forwarded"]
+
+    - Flaresolverr:
+        icon: flaresolverr.png
+        href: "http://{{HOMEPAGE_VAR_MY_SERVER_IP}}:8191"
+        description: "Cloudfare proxy server"
+        server: my-docker
+        container: flaresolverr
+
+
 - Descargas:
     - Transmission:
         icon: transmission.png
@@ -103,3 +132,4 @@
         description: "Automatización de torrents"
         server: my-docker
         container: flexget
+
